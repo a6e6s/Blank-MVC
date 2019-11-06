@@ -78,7 +78,7 @@ class CoreAdmin {
     public function hasPermissions() {
         $url = $this->getUrl();
         //prepare controller and methoud
-        isset($url[0]) ? $controller = ucfirst($url[0]) : $controller = 'Dashboard';
+        isset($url[0]) ? $controller = strtolower($url[0]) : $controller = 'dashboard';
         isset($url[1]) ? $method = $url[1] : $method = 'index';
         //convert post request to a method
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -108,13 +108,13 @@ class CoreAdmin {
                 redirect('users/error');
             }
             //check if user can access the current controller
-            if ($controller != 'Dashboard') {
+            if ($controller != 'dashboard') {
                 // check if user can access current view and he is not on the error or logout page
                 if (!array_key_exists($method, $_SESSION['permissions']->$controller) && $method != 'error' && $method != 'logout') {
                     flash('user_msg', 'عذرا هذا الفعل ليس جزء من صلاحياتك', 'alert alert-danger');
                     redirect('users/error');
                 }
-            } elseif ($controller == 'Dashboard') {
+            } elseif ($controller == 'dashboard') {
                 //if user logged in and have access to admin area he can view the dashboard
             } else {
                 flash('user_msg', 'لا تملك صلاحية الدخول الي هذه الصفحة ', 'alert alert-danger');
