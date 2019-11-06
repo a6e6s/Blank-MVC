@@ -33,8 +33,6 @@ define('SITEFOLDER', '/Blank-MVC');
 // url root
 define('URLROOT', DOMAIN . SITEFOLDER);
 
-
-
 // Media FOLDER
 define('MEDIAFOLDER', '/media/images');
 
